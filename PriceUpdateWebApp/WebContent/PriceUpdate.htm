@@ -27,7 +27,7 @@
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/knockout-3.4.0.js"></script>
-    <script src="assets/js/PriceUpdate.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,39 +38,61 @@
 
   <body class="t-rowe">
 
-	 <div class="container">
-	    <div class="row" style="border-bottom:solid; padding-bottom: 50px">
-	    asdkljfa
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="vertical-alignment-helper">
+	        <div class="modal-dialog vertical-align-center">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+	
+	                    </button>
+	                     <h4 data-bind="text: 'Update price for: ' + trpCode" class="modal-title" id="myModalLabel">Update price for: </h4>
+	
+	                </div>
+	                <div class="modal-body">
+	                	<label for="male">Price</label>
+  						<input data-bind="value: price" type="text" name="price" id="price"><br>
+					</div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	 <div id="main-container" class="container">
+	    <div class="row" style="border-bottom:solid; margin-bottom: 50px; text-align: center;">
+	    	<h1>T. Rowe Price</h1><br>
+	    	<h1 style="margin-top: -25px;">Fund Price Update Tester</h1>
 		</div>
 	    <div class="row">
 	
 	      <table class="table table-striped">
 		    <thead>
 		      <tr>
-		        <th>Symbol</th>
+		        <th>TRP Code</th>
 		        <th>Price</th>
 		      </tr>
 		    </thead>
-		    <tbody>
-		      <tr>
-		        <td>MSFT</td>
-		        <td>$12.34</td>
-		      </tr>
-		      <tr>
-		        <td>CSCO</td>
-		        <td>$50.43</td>
-		      </tr>
-		      <tr>
-		        <td>IBM</td>
-		        <td>$23.44</td>
-		      </tr>
+		    <tbody data-bind="foreach: prices">
+		        <tr>
+		            <td data-bind="text: trpCode"></td>
+		            <td>
+		            	<span data-bind="text: price" style="text-align: right"></span>
+ 	        	        <button id="updateButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: right">Edit</button>
+		            </td>
+		        </tr>
 		    </tbody>
           </table>
-	      
 	    </div> <!-- /container -->
 	  </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
+  
+  <script src="assets/js/PriceUpdate.js"></script>
 </html>
